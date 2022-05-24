@@ -13,15 +13,18 @@ class Dependencies {
         val hilt by lazy{"com.google.dagger:hilt-android:${Versions.hilt}"}
         val hiltCompiler by lazy{"com.google.dagger:hilt-compiler:${Versions.hilt}"}
         val room by lazy{"androidx.room:room-runtime:${Versions.room}"}
+        val roomKtx by lazy{"androidx.room:room-ktx:${Versions.room}"}
         val roomCompiler by lazy{"androidx.room:room-compiler:${Versions.room}"}
         val roomPaging by lazy{"androidx.room:room-paging:2.5.0-alpha01"}
         val retrofit by lazy{"com.squareup.retrofit2:retrofit:${Versions.retrofit}"}
         val retrofitGsonConverter by lazy{"com.squareup.retrofit2:converter-gson:${Versions.retrofit}"}
         val gson by lazy{"com.google.code.gson:gson:${Versions.gson}"}
-        val coroutines by lazy{"org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.kotlinCoroutines}"}
+        val coroutinesAndroid by lazy{"org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutinesAndroid}"}
+        val coroutinesCore by lazy{"org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutinesCore}"}
         val espresso by lazy{"androidx.test.espresso:espresso-core:${Versions.espresso}"}
         val extJunit by lazy{"androidx.test.ext:junit:${Versions.extJunit}"}
         val paging3 by lazy{"androidx.paging:paging-runtime:${Versions.paging3}"}
+        val pagingCommon by lazy{"androidx.paging:paging-common:${Versions.paging3}"}
         val httpLoggingInterceptor by lazy{"com.squareup.okhttp3:logging-interceptor:${Versions.httpLogInterceptor}"}
     }
 }

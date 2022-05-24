@@ -3,7 +3,7 @@ package com.safeboda.data.di
 import com.safeboda.data.BuildConfig
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.safeboda.data.common.Constants
+import com.safeboda.data.Constants
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

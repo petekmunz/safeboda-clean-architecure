@@ -2,13 +2,14 @@ package com.safeboda.data.mappers
 
 import com.safeboda.data.models.Followers
 import com.safeboda.data.models.Following
-import com.safeboda.data.models.UserAppModel
+import com.safeboda.data.models.UserDatabaseModel
 import com.safeboda.data.models.UserServerModel
-import javax.inject.Inject
+import com.safeboda.domain.models.FollowerOrFollowingModel
+import com.safeboda.domain.models.GithubUser
 
-class UserMapper @Inject constructor() {
-    fun toUserAppModel(userServerModel: UserServerModel): UserAppModel {
-        return UserAppModel(
+class UserMapper {
+    fun toUserDatabaseModel(userServerModel: UserServerModel): UserDatabaseModel {
+        return UserDatabaseModel(
             userName = userServerModel.userName ?: "",
             name = userServerModel.name ?: "",
             company = userServerModel.company ?: "",
@@ -41,6 +42,43 @@ class UserMapper @Inject constructor() {
             name = userServerModel.name ?: "",
             avatarUrl = userServerModel.avatarUrl ?: "",
             bio = userServerModel.bio ?: ""
+        )
+    }
+
+    fun toGithubUser(userDatabaseModel: UserDatabaseModel): GithubUser{
+        return GithubUser(
+            userName = userDatabaseModel.userName,
+            name = userDatabaseModel.name,
+            company = userDatabaseModel.company,
+            location = userDatabaseModel.location,
+            email = userDatabaseModel.email,
+            bio = userDatabaseModel.bio,
+            publicRepos = userDatabaseModel.publicRepos,
+            followers = userDatabaseModel.followers,
+            following = userDatabaseModel.following,
+            avatarUrl = userDatabaseModel.avatarUrl
+        )
+    }
+
+    fun toFollowerOrFollowing(following: Following): FollowerOrFollowingModel{
+        return FollowerOrFollowingModel(
+            id = following.id,
+            parentUsername = following.parentUsername,
+            username = following.username,
+            name = following.name,
+            avatarUrl = following.avatarUrl,
+            bio = following.bio
+        )
+    }
+
+    fun toFollowerOrFollowing(followers: Followers): FollowerOrFollowingModel{
+        return FollowerOrFollowingModel(
+            id = followers.id,
+            parentUsername = followers.parentUsername,
+            username = followers.username,
+            name = followers.name,
+            avatarUrl = followers.avatarUrl,
+            bio = followers.bio
         )
     }
 }

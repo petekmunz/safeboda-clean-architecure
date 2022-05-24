@@ -40,7 +40,7 @@ android {
 
 dependencies {
 
-    implementation(Dependencies.Deps.coroutines)
+    implementation(Dependencies.Deps.coroutinesAndroid)
     implementation(Dependencies.Deps.kotlinExtensions)
     implementation(Dependencies.Deps.appCompat)
     implementation(Dependencies.Deps.materialDesign)
@@ -53,9 +53,13 @@ dependencies {
     implementation(Dependencies.Deps.retrofitGsonConverter)
     implementation(Dependencies.Deps.httpLoggingInterceptor)
     implementation(Dependencies.Deps.room)
+    implementation(Dependencies.Deps.roomKtx)
     annotationProcessor(Dependencies.Deps.roomCompiler)
     implementation(Dependencies.Deps.roomPaging)
     implementation(Dependencies.Deps.hilt)
     kapt(Dependencies.Deps.hiltCompiler)
+    implementation(Dependencies.Deps.paging3)
+
+    implementation(project(":domain"))
 
 }

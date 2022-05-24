@@ -11,7 +11,8 @@ object Versions {
     const val retrofit = "2.9.0"
     const val gson = "2.8.7"
     const val material = "1.6.0"
-    const val kotlinCoroutines = "1.5.2"
+    const val coroutinesAndroid = "1.5.2"
     const val paging3 = "3.1.1"
     const val httpLogInterceptor = "4.9.3"
+    const val coroutinesCore = "1.6.1"
 }

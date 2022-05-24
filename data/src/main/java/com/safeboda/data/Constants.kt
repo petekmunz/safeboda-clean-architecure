@@ -1,5 +1,6 @@
-package com.safeboda.data.common
+package com.safeboda.data
 
 object Constants {
     const val BASE_URL = "https://api.github.com"
+    const val NETWORK_PAGE_SIZE = 10
 }
