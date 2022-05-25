@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "following")
 class Following(
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     var id: Long,
     val parentUsername: String,
     val username: String,

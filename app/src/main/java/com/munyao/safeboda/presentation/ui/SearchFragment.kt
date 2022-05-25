@@ -5,13 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import com.munyao.safeboda.databinding.FragmentSearchBinding
 import com.munyao.safeboda.presentation.viewmodels.MainViewModel
 import com.safeboda.domain.Resource
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SearchFragment : Fragment() {
-    private val mainViewModel: MainViewModel by viewModels()
+    private val mainViewModel: MainViewModel by activityViewModels()
     private var binding: FragmentSearchBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {

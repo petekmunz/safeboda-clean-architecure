@@ -19,7 +19,8 @@ class UserMapper {
             publicRepos = userServerModel.publicRepos,
             followers = userServerModel.followers,
             following = userServerModel.following,
-            avatarUrl = userServerModel.avatarUrl ?: ""
+            avatarUrl = userServerModel.avatarUrl ?: "",
+            id = userServerModel.id
         )
     }
 
@@ -45,7 +46,7 @@ class UserMapper {
         )
     }
 
-    fun toGithubUser(userDatabaseModel: UserDatabaseModel): GithubUser{
+    fun toGithubUser(userDatabaseModel: UserDatabaseModel): GithubUser {
         return GithubUser(
             userName = userDatabaseModel.userName,
             name = userDatabaseModel.name,
@@ -60,7 +61,7 @@ class UserMapper {
         )
     }
 
-    fun toFollowerOrFollowing(following: Following): FollowerOrFollowingModel{
+    fun toFollowerOrFollowing(following: Following): FollowerOrFollowingModel {
         return FollowerOrFollowingModel(
             id = following.id,
             parentUsername = following.parentUsername,
@@ -71,7 +72,7 @@ class UserMapper {
         )
     }
 
-    fun toFollowerOrFollowing(followers: Followers): FollowerOrFollowingModel{
+    fun toFollowerOrFollowing(followers: Followers): FollowerOrFollowingModel {
         return FollowerOrFollowingModel(
             id = followers.id,
             parentUsername = followers.parentUsername,

@@ -12,8 +12,6 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Named
-import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -27,7 +25,6 @@ class NetworkModule {
         return okHttpBuilder.build()
     }
 
-    @Singleton
     @Provides
     fun provideGson(): Gson {
         return GsonBuilder()
@@ -35,7 +32,6 @@ class NetworkModule {
     }
 
     @Provides
-    @Named("auth_retrofit")
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .baseUrl(Constants.BASE_URL)

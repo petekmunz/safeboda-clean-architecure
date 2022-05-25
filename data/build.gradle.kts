@@ -54,7 +54,7 @@ dependencies {
     implementation(Dependencies.Deps.httpLoggingInterceptor)
     implementation(Dependencies.Deps.room)
     implementation(Dependencies.Deps.roomKtx)
-    annotationProcessor(Dependencies.Deps.roomCompiler)
+    kapt(Dependencies.Deps.roomCompiler)
     implementation(Dependencies.Deps.roomPaging)
     implementation(Dependencies.Deps.hilt)
     kapt(Dependencies.Deps.hiltCompiler)

@@ -1,7 +1,6 @@
 plugins {
     id("java-library")
     id("org.jetbrains.kotlin.jvm")
-    id("kotlin-kapt")
 }
 
 java {
@@ -12,6 +11,5 @@ java {
 dependencies{
     implementation(Dependencies.Deps.pagingCommon)
     implementation(Dependencies.Deps.coroutinesCore)
-    implementation(Dependencies.Deps.hilt)
-    kapt(Dependencies.Deps.hiltCompiler)
+    implementation(Dependencies.Deps.javaxInject)
 }

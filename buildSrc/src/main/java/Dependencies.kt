@@ -30,5 +30,6 @@ class Dependencies {
         val httpLoggingInterceptor by lazy{"com.squareup.okhttp3:logging-interceptor:${Versions.httpLogInterceptor}"}
         val navigationFragment by lazy{"androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"}
         val navigationUiKtx by lazy{"androidx.navigation:navigation-ui-ktx:${Versions.navigation}"}
+        val javaxInject by lazy{"javax.inject:javax.inject:${Versions.javaxInject}"}
     }
 }

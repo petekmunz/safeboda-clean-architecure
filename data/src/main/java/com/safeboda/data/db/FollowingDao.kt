@@ -10,12 +10,12 @@ import com.safeboda.data.models.Following
 @Dao
 interface FollowingDao {
 
-    @Query("SELECT * FROM followers WHERE login =:login")
+    @Query("SELECT * FROM followers WHERE parentUsername =:login")
     fun getFollowingOfAUser(login: String): PagingSource<Int, Following>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAllFollowing(list: List<Following>)
 
-    @Query("DELETE FROM followers WHERE login = :login")
+    @Query("DELETE FROM followers WHERE parentUsername = :login")
     suspend fun deleteFollowingOfAUser(login: String)
 }

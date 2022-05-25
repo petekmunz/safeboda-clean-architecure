@@ -17,4 +17,5 @@ object Versions {
     const val coroutinesCore = "1.6.1"
     const val navigation = "2.4.2"
     const val legacySupport = "1.0.0"
+    const val javaxInject = "1"
 }

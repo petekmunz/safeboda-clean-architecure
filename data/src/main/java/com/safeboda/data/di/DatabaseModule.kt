@@ -44,20 +44,4 @@ class DatabaseModule {
     fun provideFollowersDao(database: SafeBodaDatabase): FollowersDao {
         return database.followersDao()
     }
-
-//    @Provides
-//    @Singleton
-//    fun provideLocalDataSource(currenciesDao: CurrenciesDao): LocalData {
-//        return LocalData(currenciesDao)
-//    }
-
-
-//    @Provides
-//    @Singleton
-//    fun provideRepository(
-//        localData: LocalData,
-//        remoteData: RemoteData
-//    ): Repository {
-//        return Repository(localData, remoteData)
-//    }
 }
