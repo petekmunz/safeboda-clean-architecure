@@ -1,10 +1,12 @@
 class Dependencies {
     object BuildPlugins {
         val android by lazy { "com.android.tools.build:gradle:${Versions.gradlePlugin}" }
-//        val kotlin by lazy { "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}" }
+        val hiltPlugin by lazy { "com.google.dagger:hilt-android-gradle-plugin:${Versions.hilt}" }
+        val navigationSafeArgs by lazy{"androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navigation}"}
     }
 
     object Deps {
+        val legacySupport by lazy { "androidx.legacy:legacy-support-v4:${Versions.legacySupport}" }
         val appCompat by lazy { "androidx.appcompat:appcompat:${Versions.appCompat}" }
         val kotlinExtensions by lazy { "androidx.core:core-ktx:${Versions.kotlinExtensions}" }
         val materialDesign by lazy { "com.google.android.material:material:${Versions.material}" }
@@ -26,5 +28,7 @@ class Dependencies {
         val paging3 by lazy{"androidx.paging:paging-runtime:${Versions.paging3}"}
         val pagingCommon by lazy{"androidx.paging:paging-common:${Versions.paging3}"}
         val httpLoggingInterceptor by lazy{"com.squareup.okhttp3:logging-interceptor:${Versions.httpLogInterceptor}"}
+        val navigationFragment by lazy{"androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"}
+        val navigationUiKtx by lazy{"androidx.navigation:navigation-ui-ktx:${Versions.navigation}"}
     }
 }

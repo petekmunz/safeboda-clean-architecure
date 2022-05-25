@@ -1,9 +1,10 @@
-package com.munyao.safeboda
+package com.munyao.safeboda.presentation.ui
 
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.munyao.safeboda.R
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

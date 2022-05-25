@@ -15,4 +15,6 @@ object Versions {
     const val paging3 = "3.1.1"
     const val httpLogInterceptor = "4.9.3"
     const val coroutinesCore = "1.6.1"
+    const val navigation = "2.4.2"
+    const val legacySupport = "1.0.0"
 }

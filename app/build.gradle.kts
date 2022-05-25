@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -27,6 +28,11 @@ android {
             )
         }
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
+    
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -45,9 +51,13 @@ dependencies {
     implementation(Dependencies.Deps.appCompat)
     implementation(Dependencies.Deps.constraintLayout)
     implementation(Dependencies.Deps.materialDesign)
+    implementation(Dependencies.Deps.legacySupport)
     testImplementation(Dependencies.Deps.junit)
     androidTestImplementation(Dependencies.Deps.extJunit)
     androidTestImplementation(Dependencies.Deps.espresso)
+
+    implementation(Dependencies.Deps.navigationFragment)
+    implementation(Dependencies.Deps.navigationUiKtx)
     implementation(Dependencies.Deps.paging3)
     implementation(Dependencies.Deps.hilt)
     kapt(Dependencies.Deps.hiltCompiler)
