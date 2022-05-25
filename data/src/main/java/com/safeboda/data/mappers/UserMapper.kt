@@ -20,7 +20,10 @@ class UserMapper {
             followers = userServerModel.followers,
             following = userServerModel.following,
             avatarUrl = userServerModel.avatarUrl ?: "",
-            id = userServerModel.id
+            id = userServerModel.id,
+            twitterUserName = userServerModel.twitterUserName?: "",
+            blog = userServerModel.blog ?: "",
+            createdAt = userServerModel.createdAt ?: ""
         )
     }
 
@@ -57,7 +60,10 @@ class UserMapper {
             publicRepos = userDatabaseModel.publicRepos,
             followers = userDatabaseModel.followers,
             following = userDatabaseModel.following,
-            avatarUrl = userDatabaseModel.avatarUrl
+            avatarUrl = userDatabaseModel.avatarUrl,
+            twitterUsername = userDatabaseModel.twitterUserName,
+            blog = userDatabaseModel.blog,
+            createdAt = userDatabaseModel.createdAt
         )
     }
 

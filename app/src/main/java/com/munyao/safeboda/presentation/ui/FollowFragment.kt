@@ -1,12 +1,13 @@
 package com.munyao.safeboda.presentation.ui
 
 import android.os.Bundle
+import android.view.*
+import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
+import com.munyao.safeboda.R
 import com.munyao.safeboda.databinding.FragmentFollowBinding
 import com.munyao.safeboda.presentation.viewmodels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint

@@ -17,12 +17,12 @@ data class UserServerModel(
     val email: String?,
     @SerializedName("bio")
     val bio: String?,
-    @SerializedName("public_repo")
+    @SerializedName("public_repos")
     val publicRepos: Int,
     @SerializedName("public_gists")
     val publicGists: Int,
     @SerializedName("twitter_username")
-    val twitterUserName: String,
+    val twitterUserName: String?,
     @SerializedName("followers")
     val followers: Int,
     @SerializedName("following")
@@ -32,5 +32,7 @@ data class UserServerModel(
     @SerializedName("created_at")
     val createdAt: String,
     @SerializedName("updated_at")
-    val updatedAt: String
+    val updatedAt: String?,
+    @SerializedName("blog")
+    val blog: String?
 )

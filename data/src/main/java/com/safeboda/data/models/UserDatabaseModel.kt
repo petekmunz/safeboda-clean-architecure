@@ -17,5 +17,8 @@ data class UserDatabaseModel(
     val publicRepos: Int,
     val followers: Int,
     val following: Int,
-    val avatarUrl: String
+    val avatarUrl: String,
+    val twitterUserName: String,
+    val blog: String,
+    val createdAt: String
 )

@@ -31,5 +31,6 @@ class Dependencies {
         val navigationFragment by lazy{"androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"}
         val navigationUiKtx by lazy{"androidx.navigation:navigation-ui-ktx:${Versions.navigation}"}
         val javaxInject by lazy{"javax.inject:javax.inject:${Versions.javaxInject}"}
+        val glide by lazy{"com.github.bumptech.glide:glide:${Versions.glide}"}
     }
 }

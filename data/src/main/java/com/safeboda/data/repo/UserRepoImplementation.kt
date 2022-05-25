@@ -32,13 +32,17 @@ class UserRepoImplementation @Inject constructor(
                     emit(Resource.Success(UserMapper().toGithubUser(user)))
                 }
             } catch (e: HttpException) {
-                emit(
-                    Resource.Error(
-                        e.localizedMessage ?: "An unexpected error occured"
+                if (userLocal == null) {
+                    emit(
+                        Resource.Error(
+                            e.localizedMessage ?: "An unexpected error occured"
+                        )
                     )
-                )
+                }
             } catch (e: IOException) {
-                emit(Resource.Error("Couldn't reach server. Check your internet connection."))
+                if (userLocal == null) {
+                    emit(Resource.Error("Couldn't reach server. Check your internet connection."))
+                }
             }
         }
     }

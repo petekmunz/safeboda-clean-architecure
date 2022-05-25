@@ -18,4 +18,5 @@ object Versions {
     const val navigation = "2.4.2"
     const val legacySupport = "1.0.0"
     const val javaxInject = "1"
+    const val glide = "4.13.0"
 }

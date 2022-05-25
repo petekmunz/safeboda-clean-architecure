@@ -10,5 +10,8 @@ data class GithubUser(
     val publicRepos: Int,
     val followers: Int,
     val following: Int,
-    val avatarUrl: String
+    val avatarUrl: String,
+    val twitterUsername: String,
+    val blog: String,
+    val createdAt: String
 )

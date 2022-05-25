@@ -56,6 +56,7 @@ dependencies {
     androidTestImplementation(Dependencies.Deps.extJunit)
     androidTestImplementation(Dependencies.Deps.espresso)
 
+    implementation(Dependencies.Deps.glide)
     implementation(Dependencies.Deps.navigationFragment)
     implementation(Dependencies.Deps.navigationUiKtx)
     implementation(Dependencies.Deps.paging3)

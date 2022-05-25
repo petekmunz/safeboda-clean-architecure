@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.munyao.safeboda.databinding.ItemFollowerOrFollowingBinding
 import com.safeboda.domain.models.FollowerOrFollowingModel
 
 class FollowPagingAdapter :
@@ -15,10 +16,10 @@ class FollowPagingAdapter :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FollowViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding = .inflate(
-        inflater,
-        parent,
-        false
+        val binding = ItemFollowerOrFollowingBinding.inflate(
+            inflater,
+            parent,
+            false
         )
         return FollowViewHolder(binding, binding.root.context)
     }
@@ -28,7 +29,7 @@ class FollowPagingAdapter :
     }
 
     inner class FollowViewHolder(
-        private val binding:,
+        private val binding: ItemFollowerOrFollowingBinding,
         private val context: Context
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(followerOrFollowingModel: FollowerOrFollowingModel?) {

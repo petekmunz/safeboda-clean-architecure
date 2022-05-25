@@ -1,23 +1,40 @@
 package com.munyao.safeboda.presentation.ui
 
 import android.os.Bundle
+import android.view.*
+import android.widget.TextView
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import com.bumptech.glide.Glide
+import com.munyao.safeboda.R
 import com.munyao.safeboda.databinding.FragmentSearchBinding
 import com.munyao.safeboda.presentation.viewmodels.MainViewModel
 import com.safeboda.domain.Resource
+import com.safeboda.domain.models.GithubUser
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class SearchFragment : Fragment() {
     private val mainViewModel: MainViewModel by activityViewModels()
     private var binding: FragmentSearchBinding? = null
+    private var searchedUsername = ""
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        val searchView = menu.findItem(R.id.action_search)?.actionView as SearchView?
+        searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if (query != null) {
+                    mainViewModel.searchUser(query)
+                    searchView.onActionViewCollapsed()
+                }
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return true
+            }
+        })
     }
 
     override fun onCreateView(
@@ -30,8 +47,9 @@ class SearchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mainViewModel.getSearchedUserLive().observe(viewLifecycleOwner){
-            when(it){
+        setHasOptionsMenu(true)
+        mainViewModel.getSearchedUserLive().observe(viewLifecycleOwner) {
+            when (it) {
                 is Resource.Loading -> {
                     //Show loading
                 }
@@ -39,9 +57,65 @@ class SearchFragment : Fragment() {
                     //Show error
                 }
                 is Resource.Success -> {
-                    //Show content
+                    if (it.data != null) {
+                        searchedUsername = it.data!!.userName
+                        bindToUI(it.data!!)
+                    } else {
+                        //Show Empty State
+                    }
                 }
             }
+        }
+        initiateClicklisteners()
+    }
+
+    private fun initiateClicklisteners() {
+        binding?.apply {
+            cardFollowers.setOnClickListener {
+                if (searchedUsername.isNotEmpty()) {
+                    //Navigate to follow fragment
+                }
+            }
+            cardFollowing.setOnClickListener {
+                if (searchedUsername.isNotEmpty()) {
+                    //Navigate to follow fragment
+                }
+            }
+        }
+    }
+
+    private fun bindToUI(githubUser: GithubUser) {
+        binding?.apply {
+            setTextViewVisibility(txtEmail, githubUser.email)
+            setTextViewVisibility(txtLocation, githubUser.location)
+            setTextViewVisibility(txtOrganization, githubUser.company)
+            setTextViewVisibility(txtTwitter, githubUser.twitterUsername)
+            setTextViewVisibility(txtBlog, githubUser.blog)
+            txtName.text = githubUser.name
+            txtUserName.text = githubUser.userName
+            txtFollowersCount.text = githubUser.followers.toString().trim()
+            txtFollowingCount.text = githubUser.following.toString().trim()
+            txtBio.text = githubUser.bio.trim()
+
+            Glide
+                .with(requireContext())
+                .load(githubUser.avatarUrl)
+                .centerCrop()
+                .placeholder(R.drawable.ic_account_circle_24)
+                .into(imgAvatar)
+
+            if (githubUser.createdAt.isNotEmpty()) {
+                //Convert string to time
+            }
+        }
+    }
+
+    private fun setTextViewVisibility(textView: TextView, text: String) {
+        if (text.isNotEmpty()) {
+            textView.visibility = View.VISIBLE
+            textView.text = text
+        } else {
+            textView.visibility = View.GONE
         }
     }
 
