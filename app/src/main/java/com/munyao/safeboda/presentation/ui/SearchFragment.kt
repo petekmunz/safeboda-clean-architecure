@@ -26,7 +26,7 @@ class SearchFragment : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_search, menu)
         val searchView = menu.findItem(R.id.action_search)?.actionView as SearchView?
-        searchView?.queryHint = "Search users"
+        searchView?.queryHint = getString(R.string.label_search_users)
         searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (query != null) {

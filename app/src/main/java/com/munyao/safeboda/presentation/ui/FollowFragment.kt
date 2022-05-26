@@ -9,6 +9,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.munyao.safeboda.R
 import com.munyao.safeboda.databinding.FragmentFollowBinding
 import com.munyao.safeboda.presentation.adapters.FollowPagingAdapter
 import com.munyao.safeboda.presentation.viewmodels.MainViewModel
@@ -52,7 +53,7 @@ class FollowFragment : Fragment() {
                 getFollowing()
             }
         } else {
-            toggleEmptyView(true, "Nothing to see here")
+            toggleEmptyView(true, getString(R.string.label_nothing_to_see))
         }
     }
 
@@ -100,7 +101,7 @@ class FollowFragment : Fragment() {
                                 toggleEmptyView(false, null)
                             }
                         } else {
-                            toggleEmptyView(true, "Nothing to see here")
+                            toggleEmptyView(true, getString(R.string.label_nothing_to_see))
                         }
                     }
                     is LoadState.Loading -> {
@@ -111,7 +112,7 @@ class FollowFragment : Fragment() {
                     is LoadState.Error -> {
                         binding?.progressBar?.hide()
                         if (followAdapter.itemCount < 1) {
-                            toggleEmptyView(true, "An error occurred")
+                            toggleEmptyView(true, getString(R.string.error_occurred_label))
                         }
                     }
                 }

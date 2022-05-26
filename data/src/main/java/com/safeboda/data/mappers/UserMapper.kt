@@ -24,7 +24,7 @@ class UserMapper {
             id = userServerModel.id,
             twitterUserName = userServerModel.twitterUserName?: "",
             blog = userServerModel.blog ?: "",
-            createdAt = userServerModel.createdAt ?: ""
+            createdAt = userServerModel.createdAt
         )
     }
 
