@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.munyao.safeboda.databinding.FragmentFollowBinding
@@ -37,17 +38,34 @@ class FollowFragment : Fragment() {
         username = args.username
         searchFollowers = args.isFollowersSearch
         binding?.apply {
-            recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            recyclerView.layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             recyclerView.setHasFixedSize(true)
             recyclerView.itemAnimator = DefaultItemAnimator()
             recyclerView.adapter = followAdapter
         }
         if (username.isNotEmpty()) {
+            handleUILoadingStates()
             if (searchFollowers) {
                 getFollowers()
             } else {
                 getFollowing()
             }
+        } else {
+            toggleEmptyView(true, "Nothing to see here")
+        }
+    }
+
+    private fun toggleEmptyView(show: Boolean, message: String? = null) {
+        if (show) {
+            binding?.recyclerView?.visibility = View.GONE
+            binding?.emptyLayout?.root?.visibility = View.VISIBLE
+            message?.let {
+                binding?.emptyLayout?.txtEmptyState?.text = message
+            }
+        } else {
+            binding?.emptyLayout?.root?.visibility = View.GONE
+            binding?.recyclerView?.visibility = View.VISIBLE
         }
     }
 
@@ -66,6 +84,36 @@ class FollowFragment : Fragment() {
             viewLifecycleOwner.lifecycleScope.launch {
                 mainViewModel.getFollowing(username).collectLatest {
                     followAdapter.submitData(it)
+                }
+            }
+        }
+    }
+
+    private fun handleUILoadingStates() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            followAdapter.loadStateFlow.collectLatest {
+                when (it.source.refresh) {
+                    is LoadState.NotLoading -> {
+                        binding?.progressBar?.hide()
+                        if (followAdapter.itemCount > 0) {
+                            if (binding?.emptyLayout?.root?.visibility == View.VISIBLE) {
+                                toggleEmptyView(false, null)
+                            }
+                        } else {
+                            toggleEmptyView(true, "Nothing to see here")
+                        }
+                    }
+                    is LoadState.Loading -> {
+                        if (followAdapter.itemCount < 1) {
+                            binding?.progressBar?.show()
+                        }
+                    }
+                    is LoadState.Error -> {
+                        binding?.progressBar?.hide()
+                        if (followAdapter.itemCount < 1) {
+                            toggleEmptyView(true, "An error occurred")
+                        }
+                    }
                 }
             }
         }

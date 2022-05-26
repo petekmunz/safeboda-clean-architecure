@@ -6,6 +6,5 @@
         android:icon="@drawable/ic_search_24"
         android:title="Search Users"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
-        app:iconTint="@color/black"
         app:showAsAction="always" />
 </menu>

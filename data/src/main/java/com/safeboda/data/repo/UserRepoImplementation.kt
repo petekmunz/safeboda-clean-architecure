@@ -32,10 +32,14 @@ class UserRepoImplementation @Inject constructor(
                     emit(Resource.Success(UserMapper().toGithubUser(user)))
                 }
             } catch (e: HttpException) {
-                if (userLocal == null) {
+                if (userLocal == null || e.code() == 403) {
                     emit(
                         Resource.Error(
-                            e.localizedMessage ?: "An unexpected error occured"
+                            if (e.code() == 403) {
+                                "API rate limit has been exceeded"
+                            } else {
+                                e.localizedMessage ?: "An unexpected error occured"
+                            }
                         )
                     )
                 }

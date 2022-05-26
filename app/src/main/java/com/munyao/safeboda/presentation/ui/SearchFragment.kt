@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.munyao.safeboda.R
 import com.munyao.safeboda.databinding.FragmentSearchBinding
+import com.munyao.safeboda.presentation.utils.Utils.showToast
 import com.munyao.safeboda.presentation.viewmodels.MainViewModel
 import com.safeboda.domain.Resource
 import com.safeboda.domain.models.GithubUser
@@ -23,7 +24,9 @@ class SearchFragment : Fragment() {
     private var emptyViewSeen = true
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_search, menu)
         val searchView = menu.findItem(R.id.action_search)?.actionView as SearchView?
+        searchView?.queryHint = "Search users"
         searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (query != null) {
@@ -58,6 +61,9 @@ class SearchFragment : Fragment() {
                 }
                 is Resource.Error -> {
                     binding?.progressBar?.hide()
+                    it.message?.let { message ->
+                        requireContext().showToast(message)
+                    }
                 }
                 is Resource.Success -> {
                     binding?.progressBar?.hide()

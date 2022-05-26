@@ -2,13 +2,11 @@ package com.munyao.safeboda.presentation.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import androidx.appcompat.widget.Toolbar
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.google.android.material.appbar.MaterialToolbar
 import com.munyao.safeboda.R
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,7 +22,7 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
         val appBarConfiguration = AppBarConfiguration(navController.graph)
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        val toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.apply {
             setDisplayShowHomeEnabled(false)
@@ -36,19 +34,13 @@ class MainActivity : AppCompatActivity() {
             NavController.OnDestinationChangedListener { controller, destination, arguments ->
                 when (destination.id) {
                     R.id.searchFragment -> {
-//                        this@MainActivity.invalidateOptionsMenu()
+                        invalidateOptionsMenu()
                     }
                     R.id.followFragment -> {
-                        toolbar.menu.clear()
+                        invalidateOptionsMenu()
                     }
                 }
             }
         navController.addOnDestinationChangedListener(destinationListener)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        val inflater: MenuInflater = menuInflater
-        inflater.inflate(R.menu.menu_search, menu)
-        return true
     }
 }
