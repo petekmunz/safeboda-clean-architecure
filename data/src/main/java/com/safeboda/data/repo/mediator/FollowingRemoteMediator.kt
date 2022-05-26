@@ -96,7 +96,7 @@ class FollowingRemoteMediator @Inject constructor(
     }
 
     private suspend fun getRemoteKeyForLastItem(state: PagingState<Int, Following>): FollowingRemoteKeys? {
-        return state.pages.lastOrNull() { it.data.isNotEmpty() }?.data?.lastOrNull()
+        return state.pages.lastOrNull { it.data.isNotEmpty() }?.data?.lastOrNull()
             ?.let { following ->
                 followingRemoteKeyDao.remoteKeysFollowingId(following.id)
             }

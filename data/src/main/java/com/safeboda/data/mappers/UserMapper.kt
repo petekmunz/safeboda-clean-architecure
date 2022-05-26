@@ -4,6 +4,7 @@ import com.safeboda.data.models.Followers
 import com.safeboda.data.models.Following
 import com.safeboda.data.models.UserDatabaseModel
 import com.safeboda.data.models.UserServerModel
+import com.safeboda.data.utils.DateUtil
 import com.safeboda.domain.models.FollowerOrFollowingModel
 import com.safeboda.domain.models.GithubUser
 
@@ -63,7 +64,7 @@ class UserMapper {
             avatarUrl = userDatabaseModel.avatarUrl,
             twitterUsername = userDatabaseModel.twitterUserName,
             blog = userDatabaseModel.blog,
-            createdAt = userDatabaseModel.createdAt
+            createdAt = DateUtil.iso8601ToSimpleUserFormat(userDatabaseModel.createdAt) ?: ""
         )
     }
 

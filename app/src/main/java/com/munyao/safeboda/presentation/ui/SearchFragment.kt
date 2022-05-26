@@ -107,6 +107,9 @@ class SearchFragment : Fragment() {
             txtFollowersCount.text = githubUser.followers.toString().trim()
             txtFollowingCount.text = githubUser.following.toString().trim()
             txtBio.text = githubUser.bio.trim()
+            if (githubUser.createdAt.isNotEmpty()) {
+                txtJoined.text = githubUser.createdAt
+            }
 
             Glide
                 .with(requireContext())
@@ -115,10 +118,6 @@ class SearchFragment : Fragment() {
                 .placeholder(R.drawable.ic_account_circle_24)
                 .error(R.drawable.ic_account_circle_24)
                 .into(imgAvatar)
-
-            if (githubUser.createdAt.isNotEmpty()) {
-                //Convert string to time
-            }
         }
     }
 
