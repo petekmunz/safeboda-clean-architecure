@@ -6,7 +6,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.safeboda.data.models.Followers
-import com.safeboda.data.models.Following
 
 @Dao
 interface FollowersDao {
@@ -15,7 +14,7 @@ interface FollowersDao {
     fun getFollowersOfAUser(login: String): PagingSource<Int, Followers>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAllFollowers(list: List<Following>)
+    suspend fun insertAllFollowers(list: List<Followers>)
 
     @Query("DELETE FROM followers WHERE parentUsername = :login")
     suspend fun deleteFollowersOfAUser(login: String)

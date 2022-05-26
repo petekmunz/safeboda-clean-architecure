@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.munyao.safeboda.R
 import com.munyao.safeboda.databinding.ItemFollowerOrFollowingBinding
 import com.safeboda.domain.models.FollowerOrFollowingModel
 
@@ -34,7 +36,17 @@ class FollowPagingAdapter :
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(followerOrFollowingModel: FollowerOrFollowingModel?) {
             followerOrFollowingModel?.let {
+                binding.txtUserName.text = it.username
+                binding.txtName.text = it.name
+                binding.txtBio.text = it.bio
 
+                Glide
+                    .with(context)
+                    .load(it.avatarUrl)
+                    .circleCrop()
+                    .placeholder(R.drawable.ic_account_circle_24)
+                    .error(R.drawable.ic_account_circle_24)
+                    .into(binding.imgAvatar)
             }
         }
     }

@@ -6,6 +6,7 @@ import android.widget.TextView
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.munyao.safeboda.R
 import com.munyao.safeboda.databinding.FragmentSearchBinding
@@ -73,12 +74,22 @@ class SearchFragment : Fragment() {
         binding?.apply {
             cardFollowers.setOnClickListener {
                 if (searchedUsername.isNotEmpty()) {
-                    //Navigate to follow fragment
+                    val navDirection =
+                        SearchFragmentDirections.actionSearchFragmentToFollowFragment(
+                            searchedUsername,
+                            true
+                        )
+                    findNavController().navigate(navDirection)
                 }
             }
             cardFollowing.setOnClickListener {
                 if (searchedUsername.isNotEmpty()) {
-                    //Navigate to follow fragment
+                    val navDirection =
+                        SearchFragmentDirections.actionSearchFragmentToFollowFragment(
+                            searchedUsername,
+                            false
+                        )
+                    findNavController().navigate(navDirection)
                 }
             }
         }
@@ -102,6 +113,7 @@ class SearchFragment : Fragment() {
                 .load(githubUser.avatarUrl)
                 .centerCrop()
                 .placeholder(R.drawable.ic_account_circle_24)
+                .error(R.drawable.ic_account_circle_24)
                 .into(imgAvatar)
 
             if (githubUser.createdAt.isNotEmpty()) {

@@ -29,7 +29,7 @@ class UserMapper {
 
     fun toFollower(parentUsername: String, userServerModel: UserServerModel): Followers {
         return Followers(
-            id = 0,
+            id = userServerModel.id,
             username = userServerModel.userName ?: "",
             name = userServerModel.name ?: "",
             avatarUrl = userServerModel.avatarUrl ?: "",
@@ -40,7 +40,7 @@ class UserMapper {
 
     fun toFollowing(parentUsername: String, userServerModel: UserServerModel): Following {
         return Following(
-            id = 0,
+            id = userServerModel.id,
             parentUsername = parentUsername,
             username = userServerModel.userName ?: "",
             name = userServerModel.name ?: "",
