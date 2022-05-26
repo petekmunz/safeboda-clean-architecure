@@ -56,8 +56,6 @@ class FollowingRemoteMediator @Inject constructor(
             val following = response.body()
             val endOfPaginationReached = following.isNullOrEmpty()
 
-
-
             dB.withTransaction {
                 if (loadType == LoadType.REFRESH) {
                     followingDao.deleteFollowingOfAUser(username)

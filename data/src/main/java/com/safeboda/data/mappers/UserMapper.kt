@@ -73,9 +73,7 @@ class UserMapper {
             id = following.id,
             parentUsername = following.parentUsername,
             username = following.username,
-            name = following.name,
             avatarUrl = following.avatarUrl,
-            bio = following.bio
         )
     }
 
@@ -84,9 +82,7 @@ class UserMapper {
             id = followers.id,
             parentUsername = followers.parentUsername,
             username = followers.username,
-            name = followers.name,
             avatarUrl = followers.avatarUrl,
-            bio = followers.bio
         )
     }
 }

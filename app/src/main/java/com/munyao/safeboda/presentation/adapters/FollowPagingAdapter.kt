@@ -37,8 +37,6 @@ class FollowPagingAdapter :
         fun bind(followerOrFollowingModel: FollowerOrFollowingModel?) {
             followerOrFollowingModel?.let {
                 binding.txtUserName.text = it.username
-                binding.txtName.text = it.name
-                binding.txtBio.text = it.bio
 
                 Glide
                     .with(context)
