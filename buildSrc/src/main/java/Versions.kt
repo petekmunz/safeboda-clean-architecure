@@ -19,4 +19,5 @@ object Versions {
     const val legacySupport = "1.0.0"
     const val javaxInject = "1"
     const val glide = "4.13.0"
+    const val lottie = "5.0.3"
 }

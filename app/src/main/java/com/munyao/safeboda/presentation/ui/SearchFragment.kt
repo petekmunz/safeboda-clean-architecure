@@ -20,6 +20,7 @@ class SearchFragment : Fragment() {
     private val mainViewModel: MainViewModel by activityViewModels()
     private var binding: FragmentSearchBinding? = null
     private var searchedUsername = ""
+    private var emptyViewSeen = true
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         val searchView = menu.findItem(R.id.action_search)?.actionView as SearchView?
@@ -49,25 +50,41 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
+        toggleEmptyView(emptyViewSeen)
         mainViewModel.getSearchedUserLive().observe(viewLifecycleOwner) {
             when (it) {
                 is Resource.Loading -> {
-                    //Show loading
+                    binding?.progressBar?.show()
                 }
                 is Resource.Error -> {
-                    //Show error
+                    binding?.progressBar?.hide()
                 }
                 is Resource.Success -> {
+                    binding?.progressBar?.hide()
                     if (it.data != null) {
                         searchedUsername = it.data!!.userName
                         bindToUI(it.data!!)
                     } else {
-                        //Show Empty State
+                        emptyViewSeen = true
+                        toggleEmptyView(emptyViewSeen, "Nothing to see here")
                     }
                 }
             }
         }
         initiateClicklisteners()
+    }
+
+    private fun toggleEmptyView(show: Boolean, message: String? = null) {
+        if (show) {
+            binding?.contentView?.visibility = View.GONE
+            binding?.emptyLayout?.root?.visibility = View.VISIBLE
+            message?.let {
+                binding?.emptyLayout?.txtEmptyState?.text = message
+            }
+        } else {
+            binding?.emptyLayout?.root?.visibility = View.GONE
+            binding?.contentView?.visibility = View.VISIBLE
+        }
     }
 
     private fun initiateClicklisteners() {
@@ -97,6 +114,11 @@ class SearchFragment : Fragment() {
 
     private fun bindToUI(githubUser: GithubUser) {
         binding?.apply {
+            if (emptyViewSeen) {
+                emptyLayout.root.visibility = View.GONE
+                contentView.visibility = View.VISIBLE
+                emptyViewSeen = false
+            }
             setTextViewVisibility(txtEmail, githubUser.email)
             setTextViewVisibility(txtLocation, githubUser.location)
             setTextViewVisibility(txtOrganization, githubUser.company)
