@@ -45,6 +45,11 @@ dependencies {
     implementation(Dependencies.Deps.kotlinExtensions)
     implementation(Dependencies.Deps.appCompat)
     implementation(Dependencies.Deps.materialDesign)
+
+    testImplementation(Dependencies.Deps.mockitoKotlin)
+    testImplementation(Dependencies.Deps.hamcrest)
+    testImplementation(Dependencies.Deps.mockitoCore)
+    testImplementation(Dependencies.Deps.coroutinesTest)
     testImplementation(Dependencies.Deps.junit)
     androidTestImplementation(Dependencies.Deps.extJunit)
     androidTestImplementation(Dependencies.Deps.espresso)

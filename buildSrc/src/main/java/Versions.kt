@@ -20,4 +20,10 @@ object Versions {
     const val javaxInject = "1"
     const val glide = "4.13.0"
     const val lottie = "5.0.3"
+    const val mockitoInline = "4.5.1"
+    const val mockitoCore = "4.5.1"
+    const val mockitoKotlin = "4.0.0"
+    const val testCoroutines = "1.6.1"
+    const val hamcrest = "2.2"
+    const val androidXCoreTesting = "2.1.0"
 }

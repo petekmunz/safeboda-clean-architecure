@@ -53,6 +53,12 @@ dependencies {
     implementation(Dependencies.Deps.constraintLayout)
     implementation(Dependencies.Deps.materialDesign)
     implementation(Dependencies.Deps.legacySupport)
+
+    testImplementation(Dependencies.Deps.mockitoInline)
+    testImplementation(Dependencies.Deps.coroutinesTest)
+    testImplementation(Dependencies.Deps.androidXCoreTesting)
+    testImplementation(Dependencies.Deps.mockitoKotlin)
+    testImplementation(Dependencies.Deps.hamcrest)
     testImplementation(Dependencies.Deps.junit)
     androidTestImplementation(Dependencies.Deps.extJunit)
     androidTestImplementation(Dependencies.Deps.espresso)
@@ -63,6 +69,8 @@ dependencies {
     implementation(Dependencies.Deps.navigationUiKtx)
     implementation(Dependencies.Deps.paging3)
     implementation(Dependencies.Deps.hilt)
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.0-alpha06")
+    androidTestImplementation("androidx.test:rules:1.4.0")
     kapt(Dependencies.Deps.hiltCompiler)
 
     implementation(project(":data"))

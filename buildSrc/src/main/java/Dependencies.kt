@@ -33,5 +33,12 @@ class Dependencies {
         val javaxInject by lazy{"javax.inject:javax.inject:${Versions.javaxInject}"}
         val glide by lazy{"com.github.bumptech.glide:glide:${Versions.glide}"}
         val lottie by lazy{"com.airbnb.android:lottie:${Versions.lottie}"}
+        val mockitoCore by lazy{"org.mockito:mockito-core:${Versions.mockitoCore}"}
+        val coroutinesTest by lazy{"org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.testCoroutines}"}
+        val hamcrest by lazy { "org.hamcrest:hamcrest:${Versions.hamcrest}" }
+        val mockitoKotlin by lazy{"org.mockito.kotlin:mockito-kotlin:${Versions.mockitoKotlin}"}
+        val androidXCoreTesting by lazy{"androidx.arch.core:core-testing:${Versions.androidXCoreTesting}"}
+        val mockitoInline by lazy { "org.mockito:mockito-inline:${Versions.mockitoInline}" }
+
     }
 }
