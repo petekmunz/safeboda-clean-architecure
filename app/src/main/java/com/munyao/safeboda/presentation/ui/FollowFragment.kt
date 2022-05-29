@@ -98,13 +98,16 @@ class FollowFragment : Fragment() {
             followAdapter.loadStateFlow.collectLatest {
                 when (it.source.refresh) {
                     is LoadState.NotLoading -> {
-                        binding?.progressBar?.hide()
                         if (followAdapter.itemCount > 0) {
+                            binding?.progressBar?.hide()
                             if (binding?.emptyLayout?.root?.visibility == View.VISIBLE) {
                                 toggleEmptyView(false, null)
                             }
                         } else {
-                            toggleEmptyView(true, getString(R.string.label_nothing_to_see))
+                            if (it.mediator?.refresh is LoadState.NotLoading) {
+                                binding?.progressBar?.hide()
+                                toggleEmptyView(true, getString(R.string.label_nothing_to_see))
+                            }
                         }
                     }
                     is LoadState.Loading -> {
