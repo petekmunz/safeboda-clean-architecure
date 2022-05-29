@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         val toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.apply {
-            setDisplayShowHomeEnabled(false)
+            setDisplayHomeAsUpEnabled(true)
             setDisplayShowTitleEnabled(false)
         }
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -42,5 +42,10 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         navController.addOnDestinationChangedListener(destinationListener)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }
