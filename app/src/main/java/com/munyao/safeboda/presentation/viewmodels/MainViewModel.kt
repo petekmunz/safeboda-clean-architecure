@@ -11,6 +11,7 @@ import com.safeboda.domain.usecases.GetFollowingUseCase
 import com.safeboda.domain.usecases.SearchUserUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.debounce
@@ -25,10 +26,12 @@ class MainViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val searchedUserLive: MutableLiveData<Resource<GithubUser?>> = MutableLiveData()
+    private var searchJob: Job = Job()
 
     @OptIn(FlowPreview::class)
     fun searchUser(username: String) {
-        viewModelScope.launch {
+        searchJob.cancel()
+        searchJob = viewModelScope.launch {
             userUseCase.invoke(username).debounce(1 * 1000).collectLatest {
                 searchedUserLive.value = it
             }
