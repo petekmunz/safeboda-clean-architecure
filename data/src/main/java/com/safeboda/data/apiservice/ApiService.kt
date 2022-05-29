@@ -1,7 +1,6 @@
 package com.safeboda.data.apiservice
 
 import com.safeboda.data.models.UserServerModel
-import kotlinx.coroutines.flow.Flow
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path

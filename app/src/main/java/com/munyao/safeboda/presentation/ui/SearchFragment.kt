@@ -72,7 +72,7 @@ class SearchFragment : Fragment() {
                         bindToUI(it.data!!)
                     } else {
                         emptyViewSeen = true
-                        toggleEmptyView(emptyViewSeen, "Nothing to see here")
+                        toggleEmptyView(emptyViewSeen, getString(R.string.label_nothing_to_see))
                     }
                 }
             }
