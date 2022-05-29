@@ -10,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.munyao.safeboda.R
 import com.munyao.safeboda.databinding.FragmentSearchBinding
-import com.munyao.safeboda.presentation.utils.Utils.showToast
+import com.munyao.safeboda.presentation.utils.Utils.showLongToast
 import com.munyao.safeboda.presentation.viewmodels.MainViewModel
 import com.safeboda.domain.Resource
 import com.safeboda.domain.models.GithubUser
@@ -62,7 +62,7 @@ class SearchFragment : Fragment() {
                 is Resource.Error -> {
                     binding?.progressBar?.hide()
                     it.message?.let { message ->
-                        requireContext().showToast(message)
+                        requireContext().showLongToast(message)
                     }
                 }
                 is Resource.Success -> {

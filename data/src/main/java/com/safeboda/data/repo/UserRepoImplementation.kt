@@ -26,20 +26,40 @@ class UserRepoImplementation @Inject constructor(
             }
             try {
                 val apiResponse = apiService.searchUser(username)
-                apiResponse.body()?.let {
-                    val user = UserMapper().toUserDatabaseModel(it)
+                if (apiResponse.body() != null) {
+                    val user = UserMapper().toUserDatabaseModel(apiResponse.body()!!)
                     userDao.insertUser(user)
                     emit(Resource.Success(UserMapper().toGithubUser(user)))
+                } else {
+                    if (userLocal == null) {
+                        val errorResource: Resource<GithubUser?> =
+                            when (apiResponse.code()) {
+                                403 -> {
+                                    Resource.Error(
+                                        "API rate limit has been exceeded"
+                                    )
+                                }
+                                404 -> {
+                                    Resource.Error(
+                                        "The user was not found"
+                                    )
+                                }
+                                else -> {
+                                    Resource.Error(
+                                        "An unexpected error occured"
+                                    )
+                                }
+                            }
+                        emit(
+                            errorResource
+                        )
+                    }
                 }
             } catch (e: HttpException) {
-                if (userLocal == null || e.code() == 403) {
+                if (userLocal == null) {
                     emit(
                         Resource.Error(
-                            if (e.code() == 403) {
-                                "API rate limit has been exceeded"
-                            } else {
-                                e.localizedMessage ?: "An unexpected error occured"
-                            }
+                            e.localizedMessage ?: "An unexpected error occured"
                         )
                     )
                 }
