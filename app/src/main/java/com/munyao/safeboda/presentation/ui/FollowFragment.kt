@@ -2,6 +2,7 @@ package com.munyao.safeboda.presentation.ui
 
 import android.os.Bundle
 import android.view.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
@@ -48,8 +49,10 @@ class FollowFragment : Fragment() {
         if (username.isNotEmpty()) {
             handleUILoadingStates()
             if (searchFollowers) {
+                (requireActivity() as AppCompatActivity).supportActionBar?.title = getString(R.string.label_followers)
                 getFollowers()
             } else {
+                (requireActivity() as AppCompatActivity).supportActionBar?.title = getString(R.string.label_following)
                 getFollowing()
             }
         } else {

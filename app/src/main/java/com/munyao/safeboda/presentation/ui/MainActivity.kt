@@ -24,19 +24,18 @@ class MainActivity : AppCompatActivity() {
         val appBarConfiguration = AppBarConfiguration(navController.graph)
         val toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
-        supportActionBar?.apply {
-            setDisplayHomeAsUpEnabled(true)
-            setDisplayShowTitleEnabled(false)
-        }
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
         val destinationListener =
             NavController.OnDestinationChangedListener { controller, destination, arguments ->
                 when (destination.id) {
                     R.id.searchFragment -> {
+                        supportActionBar?.setDisplayShowTitleEnabled(false)
                         invalidateOptionsMenu()
                     }
                     R.id.followFragment -> {
+                        supportActionBar?.setDisplayShowTitleEnabled(true)
                         invalidateOptionsMenu()
                     }
                 }
